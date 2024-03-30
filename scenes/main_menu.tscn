@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://p22dumy5i12b"]
+
+[ext_resource type="Script" path="res://scenes/scripts/main_menu.gd" id="1_pfb1t"]
+[ext_resource type="Texture2D" uid="uid://b081gi3ejmccx" path="res://data/theme.svg" id="1_ri2a7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -639.0
+offset_bottom = 380.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pfb1t")
+
+[node name="MainSprite" type="Sprite2D" parent="."]
+position = Vector2(320.5, 481)
+texture = ExtResource("1_ri2a7")
