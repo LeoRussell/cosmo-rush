@@ -13,6 +13,7 @@ offset_bottom = 380.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pfb1t")
+_game = "res://scenes/game.tscn"
 
 [node name="MainSprite" type="Sprite2D" parent="."]
 position = Vector2(320.5, 481)
