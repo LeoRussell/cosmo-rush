@@ -32,17 +32,19 @@ func _physics_process(delta):
 func shoot():
 	can_shoot = false
 	$ShootingTimer.start()
+	$AudioStreamPlayer.play()
 		
 	var pr1 = projectile.instantiate()
-	var pr2 = projectile.instantiate()
+	#var pr2 = projectile.instantiate()
 	
 	get_parent().add_child(pr1)
-	pr1.position.x = _marker.global_position.x - 10
-	pr1.position.y = _marker.global_position.y
+	#pr1.position.x = _marker.global_position.x - 10
+	pr1.position.x = _marker.global_position.x + 15
+	pr1.position.y = _marker.global_position.y + 50
 	
-	get_parent().add_child(pr2)
-	pr2.position.x = _marker.global_position.x + 35
-	pr2.position.y = _marker.global_position.y
+	#get_parent().add_child(pr2)
+	#pr2.position.x = _marker.global_position.x + 35
+	#pr2.position.y = _marker.global_position.y
 	
 	
 

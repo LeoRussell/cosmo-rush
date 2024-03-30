@@ -22,6 +22,16 @@ window/size/viewport_height=960
 window/size/initial_position_type=0
 window/size/resizable=false
 
+[importer_defaults]
+
+mp3={
+"bar_beats": 4,
+"beat_count": 0,
+"bpm": 0,
+"loop": true,
+"loop_offset": 0
+}
+
 [input]
 
 fire_up={

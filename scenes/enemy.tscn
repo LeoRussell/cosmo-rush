@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b60vqmy3si0s7"]
+[gd_scene load_steps=15 format=3 uid="uid://b60vqmy3si0s7"]
 
 [ext_resource type="Texture2D" uid="uid://dmybre87o3w7g" path="res://data/enemy/badshipidle1.svg" id="1_26orl"]
 [ext_resource type="Script" path="res://scenes/scripts/enemy.gd" id="1_n6q2p"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bvvuhwfnvnipc" path="res://data/enemy/badshipidle7.svg" id="7_lww23"]
 [ext_resource type="Texture2D" uid="uid://bvc7y1j8elvsr" path="res://data/enemy/badshipidle8.svg" id="8_7yu7w"]
 [ext_resource type="Texture2D" uid="uid://bo0c064vghyhs" path="res://data/enemy/badshipidle9.svg" id="9_iwkgs"]
+[ext_resource type="AudioStream" uid="uid://cl7n76bfjv077" path="res://data/enemy/sounds/hit.mp3" id="11_evxtx"]
+[ext_resource type="AudioStream" uid="uid://8o7bnbxu218p" path="res://data/enemy/sounds/dead.mp3" id="12_01qmd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8xqqx"]
 animations = [{
@@ -62,7 +64,15 @@ sprite_frames = SubResource("SpriteFrames_8xqqx")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="EnemyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(41, 49)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2133g")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_evxtx")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_01qmd")
+
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

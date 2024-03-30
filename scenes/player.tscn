@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1d3a4ame7r3x"]
+[gd_scene load_steps=23 format=3 uid="uid://c1d3a4ame7r3x"]
 
 [ext_resource type="Script" path="res://scenes/scripts/player.gd" id="1_usvsw"]
 [ext_resource type="Texture2D" uid="uid://g6o6ml8viymu" path="res://data/player/idle/shipidle1.svg" id="2_mbslk"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bglmf436lnjix" path="res://data/player/moving/left/shipmleft4.svg" id="14_bk0uf"]
 [ext_resource type="Texture2D" uid="uid://s0g76116jw1v" path="res://data/player/moving/left/shipmleft5.svg" id="15_ot2ei"]
 [ext_resource type="Texture2D" uid="uid://b8gj2127puwys" path="res://data/player/moving/left/shipmleft6.svg" id="16_ae55w"]
+[ext_resource type="AudioStream" uid="uid://dea134rcyelkf" path="res://data/player/sounds/shoot.mp3" id="20_c214g"]
 [ext_resource type="Texture2D" uid="uid://cu5l2ev5vgtd6" path="res://data/player/moving/righto/shipmright3.svg" id="22_3tew4"]
 [ext_resource type="Texture2D" uid="uid://cavnv2wagibty" path="res://data/player/moving/righto/shipmright4.svg" id="23_kta33"]
 [ext_resource type="Texture2D" uid="uid://crkodqn64wpui" path="res://data/player/moving/righto/shipmright5.svg" id="24_g846l"]
@@ -113,5 +114,8 @@ wait_time = 0.5
 
 [node name="ProjectileMarker" type="Marker2D" parent="."]
 position = Vector2(10, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_c214g")
 
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
