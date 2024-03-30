@@ -33,6 +33,8 @@ radius = 7.0
 radius = 7.0
 
 [node name="Bullet" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_ext30")
 
 [node name="BulletSprite" type="AnimatedSprite2D" parent="."]
@@ -44,6 +46,8 @@ position = Vector2(16, 16)
 shape = SubResource("CapsuleShape2D_x0bp6")
 
 [node name="BulletSignal" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
 
 [node name="SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
 position = Vector2(16, 16)

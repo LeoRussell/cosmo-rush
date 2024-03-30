@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dfer8gw082hgq"]
+[gd_scene load_steps=35 format=3 uid="uid://dfer8gw082hgq"]
 
 [ext_resource type="Texture2D" uid="uid://rwo7ludt803u" path="res://data/background/sky1.svg" id="1_myjrx"]
 [ext_resource type="Texture2D" uid="uid://bchbkbcnf8tfr" path="res://data/background/sky2.svg" id="2_0bqkr"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cdddm73o6ancj" path="res://data/background/sky30.svg" id="30_svydb"]
 [ext_resource type="Texture2D" uid="uid://rdk04sir2s77" path="res://data/background/sky31.svg" id="31_kx07k"]
 [ext_resource type="Texture2D" uid="uid://83cfjtc2o23h" path="res://data/background/sky32.svg" id="32_jrjpe"]
+[ext_resource type="PackedScene" uid="uid://c1d3a4ame7r3x" path="res://scenes/player.tscn" id="33_py6wo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_grodt"]
 animations = [{
@@ -144,3 +145,6 @@ position = Vector2(257, 482)
 sprite_frames = SubResource("SpriteFrames_grodt")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Player" parent="." instance=ExtResource("33_py6wo")]
+position = Vector2(227, 874)

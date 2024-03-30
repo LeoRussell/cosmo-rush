@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@onready var _animated_sprite = $BallSprite
+@onready var _animated_sprite = $BulletSprite
 
-@onready var direction = Input.get_vector("fire_left", "fire_right", "fire_up", "fire_down")
-const SPEED = 250
+@onready var direction = Input.get_vector("blank", "blank", "fire_up", "blank")
+const SPEED = 300
 
 
 func _on_ready():
