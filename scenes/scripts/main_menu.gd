@@ -8,4 +8,3 @@ func _input(event):
 		
 	elif event.as_text().to_upper() == "ESCAPE":
 		get_tree().quit()
- 

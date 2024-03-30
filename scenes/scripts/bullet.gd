@@ -16,9 +16,8 @@ func _physics_process(delta):
 
 
 func _on_bullet_signal_body_entered(body):
-	print(body.name)
-	if body.name.begins_with("BorderCollider"):
-		body.queue_free()
+	if body.name.begins_with("Enemy"):
+		body.get_damage(1)
 	
 	
 func _on_visible_notifier_screen_exited():

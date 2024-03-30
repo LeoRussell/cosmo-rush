@@ -44,6 +44,7 @@ func shoot():
 	pr2.position.x = _marker.global_position.x + 35
 	pr2.position.y = _marker.global_position.y
 	
+	
 
 func _on_shooting_timer_timeout():
 	can_shoot = true

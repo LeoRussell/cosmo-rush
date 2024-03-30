@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=3 uid="uid://b60vqmy3si0s7"]
+
+[ext_resource type="Texture2D" uid="uid://dmybre87o3w7g" path="res://data/enemy/badshipidle1.svg" id="1_26orl"]
+[ext_resource type="Script" path="res://scenes/scripts/enemy.gd" id="1_n6q2p"]
+[ext_resource type="Texture2D" uid="uid://cssy7dvgedevq" path="res://data/enemy/badshipidle2.svg" id="2_uboah"]
+[ext_resource type="Texture2D" uid="uid://b2a7dn1u6t23m" path="res://data/enemy/badshipidle3.svg" id="3_s721x"]
+[ext_resource type="Texture2D" uid="uid://bmrg7u77pa55i" path="res://data/enemy/badshipidle4.svg" id="4_t8x36"]
+[ext_resource type="Texture2D" uid="uid://dtur2xc36yayg" path="res://data/enemy/badshipidle5.svg" id="5_5qows"]
+[ext_resource type="Texture2D" uid="uid://cqg3l42der0r4" path="res://data/enemy/badshipidle6.svg" id="6_ricq1"]
+[ext_resource type="Texture2D" uid="uid://bvvuhwfnvnipc" path="res://data/enemy/badshipidle7.svg" id="7_lww23"]
+[ext_resource type="Texture2D" uid="uid://bvc7y1j8elvsr" path="res://data/enemy/badshipidle8.svg" id="8_7yu7w"]
+[ext_resource type="Texture2D" uid="uid://bo0c064vghyhs" path="res://data/enemy/badshipidle9.svg" id="9_iwkgs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xqqx"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("1_26orl")
+}, {
+"duration": 4.0,
+"texture": ExtResource("2_uboah")
+}, {
+"duration": 4.0,
+"texture": ExtResource("3_s721x")
+}, {
+"duration": 4.0,
+"texture": ExtResource("4_t8x36")
+}, {
+"duration": 4.0,
+"texture": ExtResource("5_5qows")
+}, {
+"duration": 4.0,
+"texture": ExtResource("6_ricq1")
+}, {
+"duration": 4.0,
+"texture": ExtResource("7_lww23")
+}, {
+"duration": 4.0,
+"texture": ExtResource("8_7yu7w")
+}, {
+"duration": 4.0,
+"texture": ExtResource("9_iwkgs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2133g"]
+radius = 23.0
+height = 80.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_n6q2p")
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(41.5, 41.5)
+scale = Vector2(1.29688, 1.29688)
+sprite_frames = SubResource("SpriteFrames_8xqqx")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(41, 49)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2133g")
