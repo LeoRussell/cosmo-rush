@@ -102,7 +102,7 @@ projectile = ExtResource("2_obhw8")
 position = Vector2(39, 39)
 scale = Vector2(1.21875, 1.21875)
 sprite_frames = SubResource("SpriteFrames_yshxb")
-animation = &"move_right"
+animation = &"idle"
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(39, 39)

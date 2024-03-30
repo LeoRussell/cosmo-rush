@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var _animated_sprite = $BulletSprite
 
 @onready var direction = Input.get_vector("blank", "blank", "fire_up", "blank")
-const SPEED = 300
+const SPEED = 350
 
 
 func _on_ready():
@@ -15,13 +15,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_ball_signal_body_entered(body):
+func _on_bullet_signal_body_entered(body):
 	print(body.name)
-	
-	if body.name.begins_with("Enemy"):
+	if body.name.begins_with("BorderCollider"):
 		body.queue_free()
-		
-	queue_free()
 	
 	
 func _on_visible_notifier_screen_exited():

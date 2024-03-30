@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dfer8gw082hgq"]
+[gd_scene load_steps=38 format=3 uid="uid://dfer8gw082hgq"]
 
 [ext_resource type="Texture2D" uid="uid://rwo7ludt803u" path="res://data/background/sky1.svg" id="1_myjrx"]
 [ext_resource type="Texture2D" uid="uid://bchbkbcnf8tfr" path="res://data/background/sky2.svg" id="2_0bqkr"]
@@ -138,13 +138,42 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44f2g"]
+size = Vector2(20, 961)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xl3h"]
+size = Vector2(551, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_71ff7"]
+size = Vector2(551, 34)
+
 [node name="Game" type="Node2D"]
 
 [node name="BackgroundSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(257, 482)
+position = Vector2(256, 483)
 sprite_frames = SubResource("SpriteFrames_grodt")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="Player" parent="." instance=ExtResource("33_py6wo")]
 position = Vector2(227, 874)
+
+[node name="GameBorder" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 9
+
+[node name="BorderColliderRight" type="CollisionShape2D" parent="GameBorder"]
+position = Vector2(522, 479)
+shape = SubResource("RectangleShape2D_44f2g")
+
+[node name="BorderColliderUp" type="CollisionShape2D" parent="GameBorder"]
+position = Vector2(256.5, -15.5)
+shape = SubResource("RectangleShape2D_0xl3h")
+
+[node name="BroderColliderDown" type="CollisionShape2D" parent="GameBorder"]
+position = Vector2(255.5, 977)
+shape = SubResource("RectangleShape2D_71ff7")
+
+[node name="BorderColliderLeft" type="CollisionShape2D" parent="GameBorder"]
+position = Vector2(-10, 479.5)
+shape = SubResource("RectangleShape2D_44f2g")

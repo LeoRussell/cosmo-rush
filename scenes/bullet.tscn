@@ -31,10 +31,11 @@ radius = 7.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayqkk"]
 radius = 7.0
+height = 32.0
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 6
+collision_mask = 4
 script = ExtResource("1_ext30")
 
 [node name="BulletSprite" type="AnimatedSprite2D" parent="."]
@@ -57,4 +58,5 @@ shape = SubResource("CapsuleShape2D_ayqkk")
 position = Vector2(16, 16)
 scale = Vector2(1, 1.6)
 
+[connection signal="body_entered" from="BulletSignal" to="." method="_on_bullet_signal_body_entered"]
 [connection signal="screen_exited" from="VisibleNotifier" to="." method="_on_visible_notifier_screen_exited"]
