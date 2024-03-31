@@ -15,7 +15,9 @@ func _physics_process(delta):
 
 func get_damage(points):
 	_health -= points
+	
 	if _health <= 0:
+		_animated_sprite.play("death")
 		$EnemyCollision.queue_free()
 		$DeathSound.play()
 	else:

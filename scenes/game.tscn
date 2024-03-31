@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dfer8gw082hgq"]
 
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_u46u0"]
 [ext_resource type="Texture2D" uid="uid://dofyo736xrjta" path="res://data/background.svg" id="1_wy6fj"]
 [ext_resource type="PackedScene" uid="uid://c1d3a4ame7r3x" path="res://scenes/player.tscn" id="33_py6wo"]
-[ext_resource type="PackedScene" uid="uid://b60vqmy3si0s7" path="res://scenes/enemy.tscn" id="34_g5kd7"]
-[ext_resource type="AudioStream" uid="uid://cddchhrfq4dmn" path="res://data/sounds/16_bit_space.ogg" id="35_q8p34"]
+[ext_resource type="AudioStream" uid="uid://cddchhrfq4dmn" path="res://data/sounds/background/16_bit_space.ogg" id="35_q8p34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44f2g"]
 size = Vector2(20, 961)
@@ -15,6 +15,7 @@ size = Vector2(551, 29)
 size = Vector2(551, 34)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_u46u0")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 position = Vector2(256, 482)
@@ -47,6 +48,3 @@ position = Vector2(227, 874)
 stream = ExtResource("35_q8p34")
 volume_db = -5.0
 autoplay = true
-
-[node name="Enemy" parent="." instance=ExtResource("34_g5kd7")]
-position = Vector2(218, -9)

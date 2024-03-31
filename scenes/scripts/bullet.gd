@@ -11,8 +11,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-
+	
 func _on_bullet_signal_body_entered(body):
+	print(body.name)
 	if body.name.begins_with("Enemy"):
 		body.get_damage(1)
 		queue_free()
