@@ -1,62 +1,79 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3vatigqay1ex"]
+[gd_scene load_steps=10 format=3 uid="uid://d3vatigqay1ex"]
 
 [ext_resource type="Script" path="res://scenes/scripts/bullet.gd" id="1_ext30"]
-[ext_resource type="Texture2D" uid="uid://dkeet1shuf7u7" path="res://data/projectile/bullet1.svg" id="2_o5pt1"]
-[ext_resource type="Texture2D" uid="uid://icpt6ogjpop5" path="res://data/projectile/bullet2.svg" id="3_b485w"]
-[ext_resource type="Texture2D" uid="uid://bm2nkdhtwrhan" path="res://data/projectile/bullet3.svg" id="4_k87sp"]
-[ext_resource type="Texture2D" uid="uid://c057dxr03equh" path="res://data/projectile/bullet4.svg" id="5_dlsjj"]
+[ext_resource type="Texture2D" uid="uid://bdm776x2q2me" path="res://data/projectile/pbullet.png" id="2_fj28o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3brib"]
+atlas = ExtResource("2_fj28o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycqw1"]
+atlas = ExtResource("2_fj28o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x82fm"]
+atlas = ExtResource("2_fj28o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mqbf"]
+atlas = ExtResource("2_fj28o")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hwwhu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_o5pt1")
+"texture": SubResource("AtlasTexture_3brib")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_b485w")
+"texture": SubResource("AtlasTexture_ycqw1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_k87sp")
+"texture": SubResource("AtlasTexture_x82fm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_dlsjj")
+"texture": SubResource("AtlasTexture_7mqbf")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0bp6"]
-radius = 7.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ek65a"]
+size = Vector2(10, 12)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ayqkk"]
-radius = 7.0
-height = 32.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gxfi"]
+size = Vector2(10, 14)
 
 [node name="Bullet" type="CharacterBody2D"]
+position = Vector2(-29, -30)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_ext30")
 
 [node name="BulletSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 16)
+position = Vector2(29, 29)
+scale = Vector2(1.8125, 1.8125)
 sprite_frames = SubResource("SpriteFrames_hwwhu")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.00506122
 
 [node name="BulletCollider" type="CollisionShape2D" parent="."]
-position = Vector2(16, 16)
-shape = SubResource("CapsuleShape2D_x0bp6")
+position = Vector2(29, 30)
+shape = SubResource("RectangleShape2D_ek65a")
 
 [node name="BulletSignal" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 6
 
 [node name="SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
-position = Vector2(16, 16)
-shape = SubResource("CapsuleShape2D_ayqkk")
+position = Vector2(29, 30)
+shape = SubResource("RectangleShape2D_2gxfi")
 
 [node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(16, 16)
-scale = Vector2(1, 1.6)
+position = Vector2(29, 30)
+scale = Vector2(0.5, 0.6)
 
 [connection signal="body_entered" from="BulletSignal" to="." method="_on_bullet_signal_body_entered"]
 [connection signal="screen_exited" from="VisibleNotifier" to="." method="_on_visible_notifier_screen_exited"]

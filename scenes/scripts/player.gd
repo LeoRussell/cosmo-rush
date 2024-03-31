@@ -23,24 +23,26 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("move_right"):
 		_animated_sprite.play("move_right")	
 		
+	elif Input.is_action_pressed("move_up") or Input.is_action_pressed("move_down"):
+		_animated_sprite.play("move")
+		
 		
 	else:
 		_animated_sprite.play("idle")
-		pass
 		
 		
 func shoot():
 	can_shoot = false
 	$ShootingTimer.start()
-	$AudioStreamPlayer.play()
+	$ShootingSound.play()
 		
 	var pr1 = projectile.instantiate()
 	#var pr2 = projectile.instantiate()
 	
 	get_parent().add_child(pr1)
 	#pr1.position.x = _marker.global_position.x - 10
-	pr1.position.x = _marker.global_position.x + 15
-	pr1.position.y = _marker.global_position.y + 50
+	pr1.position.x = _marker.global_position.x - 28
+	pr1.position.y = _marker.global_position.y - 60
 	
 	#get_parent().add_child(pr2)
 	#pr2.position.x = _marker.global_position.x + 35
