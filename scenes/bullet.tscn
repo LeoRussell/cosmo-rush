@@ -40,10 +40,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek65a"]
-size = Vector2(10, 12)
+size = Vector2(10, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gxfi"]
-size = Vector2(10, 14)
+size = Vector2(10, 16)
 
 [node name="Bullet" type="CharacterBody2D"]
 position = Vector2(-29, -30)
@@ -52,8 +52,8 @@ collision_mask = 4
 script = ExtResource("1_ext30")
 
 [node name="BulletSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(29, 29)
-scale = Vector2(1.8125, 1.8125)
+position = Vector2(29, 30)
+scale = Vector2(2.125, 2.125)
 sprite_frames = SubResource("SpriteFrames_hwwhu")
 animation = &"idle"
 autoplay = "idle"

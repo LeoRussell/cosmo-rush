@@ -22,5 +22,6 @@ func _scenario_1():
 		_enemies_number += 1
 		
 		get_parent().add_child(enemy)
-		enemy.position.y = 10
+		enemy.position.y = -50
 		enemy.position.x = 5 + (100 * mult)
+		enemy.set_movement(10)
