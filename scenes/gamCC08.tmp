@@ -48,8 +48,3 @@ position = Vector2(227, 874)
 stream = ExtResource("35_q8p34")
 volume_db = -5.0
 autoplay = true
-
-[node name="WaveDelay" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="WaveDelay" to="." method="_on_wave_delay_timeout"]

@@ -156,17 +156,14 @@ data = PackedByteArray(255, 251, 80, 196, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 [node name="EnemyPoor" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 8
 script = ExtResource("1_ai845")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(49.9114, 48.9114)
 scale = Vector2(3.06803, 3.06803)
 sprite_frames = SubResource("SpriteFrames_8xqqx")
-animation = &"move"
-autoplay = "idle"
-frame = 3
-frame_progress = 0.829168
+animation = &"idle"
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(50, 48)
@@ -179,4 +176,13 @@ stream = ExtResource("3_wint8")
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamMP3_42sgu")
 
+[node name="ActivationTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
+[connection signal="timeout" from="ActivationTimer" to="." method="_on_activation_timer_timeout"]
+[connection signal="screen_exited" from="VisibleNotifier" to="." method="_on_visible_notifier_screen_exited"]

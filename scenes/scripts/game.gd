@@ -2,17 +2,25 @@ extends Node2D
 
 
 var rng = RandomNumberGenerator.new()
+
 var _enemies_number = 0
 
-
+# тут остановился 
 func _process(delta):
-	if _enemies_number <= 0:
-		var scenario = rng.randf_range(1.0, 1.0)
+	if _enemies_number == 0:
+		_enemies_number = -1
+		$WaveDelay.start()
 		
-		if scenario == 1:
-			_scenario_1()
-			
-			
+		
+func _scenario_load(scenario):
+	if scenario == 1:
+		_scenario_1()
+		
+func _on_wave_delay_timeout():
+	var scenario = rng.randf_range(1.0, 1.0)
+	_scenario_load(scenario)
+	
+	
 func _scenario_1():
 	for mult in range(0, 5):
 		var _preload = preload("res://scenes/poorenemy.tscn")
@@ -25,3 +33,6 @@ func _scenario_1():
 		enemy.position.y = -50
 		enemy.position.x = 5 + (100 * mult)
 		enemy.set_movement(10)
+
+
+
