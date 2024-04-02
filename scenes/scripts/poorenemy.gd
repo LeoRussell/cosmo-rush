@@ -41,9 +41,14 @@ func _physics_process(delta):
 			is_moving = false
 			_animated_sprite.play("idle")
 			
+			
+func _on_interaction_signal_body_entered(body):
+	if body.name.begins_with("Player"):
+		body.get_damage(1)
 	
-func get_damage(points):
-	_health -= points
+	
+func get_damage(value):
+	_health -= value
 	
 	if _health <= 0:
 		set_movement(0, 0)
@@ -62,6 +67,6 @@ func _on_death_sound_finished():
 
 
 func _on_visible_notifier_screen_exited():
-	queue_free()
 	$"../Game"._enemies_number -= 1
+	queue_free()
 	

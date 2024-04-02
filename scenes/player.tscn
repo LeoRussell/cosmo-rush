@@ -1,9 +1,51 @@
-[gd_scene load_steps=21 format=3 uid="uid://c1d3a4ame7r3x"]
+[gd_scene load_steps=33 format=3 uid="uid://c1d3a4ame7r3x"]
 
 [ext_resource type="Script" path="res://scenes/scripts/player.gd" id="1_usvsw"]
 [ext_resource type="PackedScene" uid="uid://d3vatigqay1ex" path="res://scenes/bullet.tscn" id="2_obhw8"]
 [ext_resource type="Texture2D" uid="uid://c7fjqv4uk2lkj" path="res://data/player/player.png" id="3_rmjj8"]
 [ext_resource type="AudioStream" uid="uid://df2vjvbt0xnql" path="res://data/player/sounds/shootsmall.mp3" id="4_ptt0o"]
+[ext_resource type="AudioStream" uid="uid://dn7lr3muf0l3" path="res://data/player/sounds/hit.mp3" id="5_6ni1o"]
+[ext_resource type="AudioStream" uid="uid://tiuiplnfll36" path="res://data/player/sounds/death.mp3" id="6_5d7st"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2effv"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmtlx"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg2ig"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiar5"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8rfl"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27glv"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_340yp"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t2yl"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wo6ms"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(256, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1tyu"]
+atlas = ExtResource("3_rmjj8")
+region = Rect2(192, 0, 96, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uf2l4"]
 atlas = ExtResource("3_rmjj8")
@@ -63,6 +105,41 @@ region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ev2dt"]
 animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_2effv")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_lmtlx")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_hg2ig")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_uiar5")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_u8rfl")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_27glv")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_340yp")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_2t2yl")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_wo6ms")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_p1tyu")
+}],
+"loop": false,
+"name": &"death",
+"speed": 30.0
+}, {
 "frames": [{
 "duration": 5.0,
 "texture": SubResource("AtlasTexture_uf2l4")
@@ -145,21 +222,28 @@ projectile = ExtResource("2_obhw8")
 position = Vector2(26, 22)
 scale = Vector2(1.78907, 1.78907)
 sprite_frames = SubResource("SpriteFrames_ev2dt")
-animation = &"move"
-frame_progress = 0.303454
+animation = &"death"
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(26, 20)
 shape = SubResource("RectangleShape2D_4suwv")
 
 [node name="ShootingTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.3
 
 [node name="ProjectileMarker" type="Marker2D" parent="."]
 position = Vector2(26, 22)
 
-[node name="ShootingSound" type="AudioStreamPlayer" parent="."]
+[node name="ShootingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ptt0o")
 volume_db = -5.0
 
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6ni1o")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_5d7st")
+volume_db = -5.0
+
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

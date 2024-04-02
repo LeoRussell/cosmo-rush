@@ -59,7 +59,7 @@ animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.00506122
 
-[node name="BulletCollider" type="CollisionShape2D" parent="."]
+[node name="BulletCollision" type="CollisionShape2D" parent="."]
 position = Vector2(29, 30)
 shape = SubResource("RectangleShape2D_ek65a")
 

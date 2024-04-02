@@ -6,29 +6,44 @@ extends CharacterBody2D
 
 var can_shoot = true
 
-const SPEED = 175	
+var _health = 2
+var speed = 175	
 
 func _physics_process(delta):
-	if Input.is_action_pressed("fire_up"):
-		if can_shoot == true:
-			shoot()
+	if _health > 0:
+		if Input.is_action_pressed("fire_up"):
+			if can_shoot == true:
+				shoot()
+				
+		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		velocity = direction * speed
+		move_and_slide()
+		
+		if Input.is_action_pressed("move_left"):
+			_animated_sprite.play("move_left")
 			
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * SPEED
-	move_and_slide()
+		elif Input.is_action_pressed("move_right"):
+			_animated_sprite.play("move_right")	
+			
+		elif Input.is_action_pressed("move_up") or Input.is_action_pressed("move_down"):
+			_animated_sprite.play("move")
+			
+			
+		else:
+			_animated_sprite.play("idle")
+		
+		
+func get_damage(value):
+	_health -= value
 	
-	if Input.is_action_pressed("move_left"):
-		_animated_sprite.play("move_left")
+	if _health <= 0:
+		$PlayerCollider.queue_free()
 		
-	elif Input.is_action_pressed("move_right"):
-		_animated_sprite.play("move_right")	
-		
-	elif Input.is_action_pressed("move_up") or Input.is_action_pressed("move_down"):
-		_animated_sprite.play("move")
-		
+		_animated_sprite.play("death")
+		$DeathSound.play()
 		
 	else:
-		_animated_sprite.play("idle")
+		$HitSound.play()
 		
 		
 func shoot():
@@ -49,6 +64,9 @@ func shoot():
 	#pr2.position.y = _marker.global_position.y
 	
 	
-
+func _on_death_sound_finished():
+	queue_free()
+	
+	
 func _on_shooting_timer_timeout():
 	can_shoot = true

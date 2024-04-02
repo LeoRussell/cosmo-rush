@@ -32,7 +32,7 @@ mp3={
 "bar_beats": 4,
 "beat_count": 0,
 "bpm": 0,
-"loop": true,
+"loop": false,
 "loop_offset": 0
 }
 
