@@ -119,7 +119,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_euk4c"]
 size = Vector2(38, 38)
 
-[node name="PickupDouble" type="CharacterBody2D"]
+[node name="PickupBuffDouble" type="CharacterBody2D"]
 scale = Vector2(1.28543, 1.27265)
 collision_layer = 32
 script = ExtResource("1_mj20m")

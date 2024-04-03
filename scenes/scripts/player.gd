@@ -35,12 +35,11 @@ func _physics_process(delta):
 			
 			
 func _on_signal_body_body_entered(body):
-	print(body.name)
-	if body.name.begins_with("Pickup"):
-		if body.name.begins_with("PickupDouble"):
-			_current_mode = ("DOUBLE")
-			body.pickup()
+	if body.name.begins_with("PickupBuff"):
+		_current_mode = body._modificator
+		$BuffTimer.start()
 	
+	body.pickup()
 	$PickupSound.play()
 			
 			
@@ -89,3 +88,7 @@ func _on_death_sound_finished():
 	
 func _on_shooting_timer_timeout():
 	can_shoot = true
+
+
+func _on_buff_timer_timeout():
+	_current_mode = ("SINGLE")

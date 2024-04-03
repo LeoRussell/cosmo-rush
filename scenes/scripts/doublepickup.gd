@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 var direction = Vector2(0, 1)
 const SPEED = 100
+var _modificator = ("DOUBLE")
 
 
 func _physics_process(delta):

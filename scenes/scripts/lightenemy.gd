@@ -31,7 +31,7 @@ func _create_pickup(numero):
 	
 	if typeof(_pickup_preload) != 4:
 		var pickup = _pickup_preload.instantiate()
-		pickup.name = "PickupDouble" + str(rng.randf_range(6, 0))
+		pickup.name = "PickupBuff" + str(rng.randf_range(128, 0))
 		get_parent().add_child(pickup)
 		
 		pickup.position.x = global_position.x + 50
