@@ -6,8 +6,8 @@ extends CharacterBody2D
 
 var can_shoot = true
 
-var _health = 2
-var speed = 175	
+var _health = 3
+var speed = 250	
 
 func _physics_process(delta):
 	if _health > 0:
@@ -37,7 +37,8 @@ func get_damage(value):
 	_health -= value
 	
 	if _health <= 0:
-		$PlayerCollider.queue_free()
+		$PlayerColliderUpper.queue_free()
+		$PlayerColliderBottom.queue_free()
 		
 		_animated_sprite.play("death")
 		$DeathSound.play()

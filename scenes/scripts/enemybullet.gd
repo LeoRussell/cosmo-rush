@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@onready var _animated_sprite = $BulletSprite
+@onready var _animated_sprite = $EnemyBulletSprite
 
-var direction = Input.get_vector("blank", "blank", "fire_up", "blank")
-const SPEED = 300
+var direction = Vector2(0, 1)
+const SPEED = 150
 
 
 func _physics_process(delta):
@@ -13,8 +13,7 @@ func _physics_process(delta):
 
 	
 func _on_bullet_signal_body_entered(body):
-	print(body.name)
-	if body.name.begins_with("Enemy"):
+	if body.name.begins_with("Player"):
 		body.get_damage(1)
 		queue_free()
 	

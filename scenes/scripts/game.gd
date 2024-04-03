@@ -15,9 +15,12 @@ func _physics_process(delta):
 func _scenario_load(scenario):
 	if scenario == 1:
 		_scenario_1()
+	
+	elif scenario == 2:
+		_scenario_2()
 		
 func _on_wave_delay_timeout():
-	var scenario = rng.randf_range(1.0, 1.0)
+	var scenario = rng.randf_range(2.0, 2.0)
 	_scenario_load(scenario)
 	_enemies_number += 1
 	
@@ -32,6 +35,19 @@ func _scenario_1():
 		
 		get_parent().add_child(enemy)
 		enemy.position.y = -50
+		enemy.position.x = 5 + (100 * mult)
+		enemy.set_movement(10)
+
+func _scenario_2():
+	for mult in range(0, 5):
+		var _preload = preload("res://scenes/lightenemy.tscn")
+		var enemy = _preload.instantiate()
+		enemy.name = "EnemyLight" + str(mult)
+		
+		_enemies_number += 1
+		
+		get_parent().add_child(enemy)
+		enemy.position.y = -70
 		enemy.position.x = 5 + (100 * mult)
 		enemy.set_movement(10)
 
