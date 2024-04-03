@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 
+var _pickup_preload = ("BLANK")
 @export var projectile : PackedScene
 @onready var _animated_sprite = $EnemySprite
 @onready var _marker = $ProjectileMarker
-
+var rng = RandomNumberGenerator.new()
 
 var _speed = 30
 var _health = 3
@@ -22,8 +23,24 @@ func _on_ready():
 func _on_activation_timer_timeout():
 	if _health > 0:
 		set_movement(1000, 100)
+		
+func _create_pickup(numero):
+	if numero == 1:
+		_pickup_preload = preload("res://scenes/doublepickup.tscn")
 	
 	
+	if typeof(_pickup_preload) != 4:
+		var pickup = _pickup_preload.instantiate()
+		pickup.name = "PickupDouble" + str(rng.randf_range(6, 0))
+		get_parent().add_child(pickup)
+		
+		pickup.position.x = global_position.x + 50
+		pickup.position.y = global_position.y + 60
+		
+	else:
+		pass
+		
+		
 func set_movement(pos, speed=50):
 	if global_position.y < pos:
 		_posrow = pos
@@ -78,6 +95,10 @@ func get_damage(value):
 		
 		_animated_sprite.play("death")
 		$DeathSound.play()
+		
+		var _numero = rng.randi_range(1, 5)
+	
+		_create_pickup(_numero)
 
 
 func _on_death_sound_finished():
@@ -96,6 +117,3 @@ func _on_shooting_delay_timeout():
 	
 func _on_shooting_timer_timeout():
 	is_attacking = false
-
-
-

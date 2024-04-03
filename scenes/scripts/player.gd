@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 var can_shoot = true
 
+var _current_mode = ("SINGLE")
 var _health = 3
 var speed = 250	
 
@@ -31,8 +32,18 @@ func _physics_process(delta):
 			
 		else:
 			_animated_sprite.play("idle")
-		
-		
+			
+			
+func _on_signal_body_body_entered(body):
+	print(body.name)
+	if body.name.begins_with("Pickup"):
+		if body.name.begins_with("PickupDouble"):
+			_current_mode = ("DOUBLE")
+			body.pickup()
+	
+	$PickupSound.play()
+			
+			
 func get_damage(value):
 	_health -= value
 	
@@ -51,18 +62,25 @@ func shoot():
 	can_shoot = false
 	$ShootingTimer.start()
 	$ShootingSound.play()
+	
+	if _current_mode == ("SINGLE"):
+		var pr = projectile.instantiate()
 		
-	var pr1 = projectile.instantiate()
-	#var pr2 = projectile.instantiate()
+		get_parent().add_child(pr)
+		pr.position.x = _marker.global_position.x - 43
+		pr.position.y = _marker.global_position.y - 80
 	
-	get_parent().add_child(pr1)
-	#pr1.position.x = _marker.global_position.x - 10
-	pr1.position.x = _marker.global_position.x - 43
-	pr1.position.y = _marker.global_position.y - 80
-	
-	#get_parent().add_child(pr2)
-	#pr2.position.x = _marker.global_position.x + 35
-	#pr2.position.y = _marker.global_position.y
+	elif _current_mode == ("DOUBLE"):
+		var pr1 = projectile.instantiate()
+		var pr2 = projectile.instantiate()
+		
+		get_parent().add_child(pr1)
+		pr1.position.x = _marker.global_position.x - 69
+		pr1.position.y = _marker.global_position.y - 80
+		
+		get_parent().add_child(pr2)
+		pr2.position.x = _marker.global_position.x - 16
+		pr2.position.y = _marker.global_position.y - 80
 	
 	
 func _on_death_sound_finished():

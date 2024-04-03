@@ -1,0 +1,142 @@
+[gd_scene load_steps=20 format=3 uid="uid://bk27ebc7av21g"]
+
+[ext_resource type="Texture2D" uid="uid://caj7c6li5jxw3" path="res://data/pickups/Pickup Icon - Weapons - Auto Cannons.png" id="1_jmpxr"]
+[ext_resource type="Script" path="res://scenes/scripts/doublepickup.gd" id="1_mj20m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgh4n"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryli3"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h787r"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcwqq"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mxwj"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tvq8"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrjvf"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ty5o"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogtd8"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4bct"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp734"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30med"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qqmr"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt4oq"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exgt6"]
+atlas = ExtResource("1_jmpxr")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oy3bx"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_wgh4n")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ryli3")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_h787r")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jcwqq")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4mxwj")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2tvq8")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hrjvf")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5ty5o")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ogtd8")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_j4bct")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jp734")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_30med")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0qqmr")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_pt4oq")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_exgt6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euk4c"]
+size = Vector2(38, 38)
+
+[node name="PickupDouble" type="CharacterBody2D"]
+scale = Vector2(1.28543, 1.27265)
+collision_layer = 32
+script = ExtResource("1_mj20m")
+
+[node name="DoubleSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.90735e-06, 1.90735e-06)
+scale = Vector2(1.46875, 1.46875)
+sprite_frames = SubResource("SpriteFrames_oy3bx")
+autoplay = "default"
+frame_progress = 0.310479
+
+[node name="PickupCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_euk4c")
+
+[node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-6.25849e-07, 2.5)
+scale = Vector2(1.9, 1.95)
+
+[connection signal="screen_exited" from="VisibleNotifier" to="." method="_on_visible_notifier_screen_exited"]
