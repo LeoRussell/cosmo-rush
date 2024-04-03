@@ -46,7 +46,8 @@ size = Vector2(10, 14)
 size = Vector2(10, 16)
 
 [node name="Bullet" type="CharacterBody2D"]
-position = Vector2(-29, -30)
+position = Vector2(-44, -41)
+scale = Vector2(1.50365, 1.36488)
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_ext30")
@@ -69,6 +70,7 @@ collision_mask = 6
 
 [node name="SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
 position = Vector2(29, 30)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2gxfi")
 
 [node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]

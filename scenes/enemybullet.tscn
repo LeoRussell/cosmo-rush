@@ -40,10 +40,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek65a"]
-size = Vector2(14, 14)
+size = Vector2(12.2776, 13.0927)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gxfi"]
-size = Vector2(14, 16)
+size = Vector2(13.8123, 15.2318)
 
 [node name="EnemyBullet" type="CharacterBody2D"]
 position = Vector2(-16, -18)
@@ -52,7 +52,7 @@ collision_layer = 16
 script = ExtResource("1_r2qpm")
 
 [node name="EnemyBulletSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(12.3914, 13.1549)
+position = Vector2(11.5102, 13.7086)
 scale = Vector2(2.84375, 2.84375)
 sprite_frames = SubResource("SpriteFrames_hwwhu")
 animation = &"idle"
@@ -61,7 +61,8 @@ frame = 1
 frame_progress = 0.160307
 
 [node name="BulletCollision" type="CollisionShape2D" parent="."]
-position = Vector2(12.3914, 13.5934)
+position = Vector2(12.2776, 13.255)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ek65a")
 
 [node name="BulletSignal" type="Area2D" parent="."]
@@ -69,12 +70,13 @@ collision_layer = 16
 collision_mask = 3
 
 [node name="SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
-position = Vector2(12.3914, 13.5934)
+position = Vector2(12.2776, 13.7086)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2gxfi")
 
 [node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(12.3914, 13.5934)
-scale = Vector2(0.7, 0.7)
+position = Vector2(12.2776, 13.3278)
+scale = Vector2(0.613878, 0.647353)
 
 [connection signal="body_entered" from="BulletSignal" to="." method="_on_bullet_signal_body_entered"]
 [connection signal="screen_exited" from="VisibleNotifier" to="." method="_on_visible_notifier_screen_exited"]

@@ -57,8 +57,8 @@ func shoot():
 	
 	get_parent().add_child(pr1)
 	#pr1.position.x = _marker.global_position.x - 10
-	pr1.position.x = _marker.global_position.x - 28
-	pr1.position.y = _marker.global_position.y - 60
+	pr1.position.x = _marker.global_position.x - 43
+	pr1.position.y = _marker.global_position.y - 80
 	
 	#get_parent().add_child(pr2)
 	#pr2.position.x = _marker.global_position.x + 35

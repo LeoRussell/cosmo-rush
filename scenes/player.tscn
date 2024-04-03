@@ -241,7 +241,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ufb4f")
 
 [node name="ShootingTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.2
 
 [node name="ProjectileMarker" type="Marker2D" parent="."]
 position = Vector2(26, 22)

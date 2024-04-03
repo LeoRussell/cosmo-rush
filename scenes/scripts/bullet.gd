@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var _animated_sprite = $BulletSprite
 
 var direction = Input.get_vector("blank", "blank", "fire_up", "blank")
-const SPEED = 300
+const SPEED = 450
 
 
 func _physics_process(delta):
