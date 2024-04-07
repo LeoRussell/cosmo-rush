@@ -5,19 +5,33 @@ extends CharacterBody2D
 @onready var _marker = $ProjectileMarker
 
 var can_shoot = true
+var can_dash = true
+var is_Invulnerable = false
 
 var _current_mode = ("SINGLE")
 var _health = 3
-var speed = 250	
+var _current_speed = 250
+var _modi_speed = 250
 
 func _physics_process(delta):
 	if _health > 0:
+		if Input.is_action_just_pressed("dash"):
+			if can_dash == true:
+				is_Invulnerable = true
+				_current_speed = _modi_speed * 2
+				
+				can_dash = false
+				$DashTimer.start()
+				
+			else:
+				pass
+			
 		if Input.is_action_pressed("fire_up"):
 			if can_shoot == true:
 				shoot()
 				
 		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		velocity = direction * speed
+		velocity = direction * _current_speed
 		move_and_slide()
 		
 		if Input.is_action_pressed("move_left"):
@@ -44,17 +58,18 @@ func _on_signal_body_body_entered(body):
 			
 			
 func get_damage(value):
-	_health -= value
-	
-	if _health <= 0:
-		$PlayerColliderUpper.queue_free()
-		$PlayerColliderBottom.queue_free()
+	if is_Invulnerable == false:
+		_health -= value
 		
-		_animated_sprite.play("death")
-		$DeathSound.play()
-		
-	else:
-		$HitSound.play()
+		if _health <= 0:
+			$PlayerColliderUpper.queue_free()
+			$PlayerColliderBottom.queue_free()
+			
+			_animated_sprite.play("death")
+			$DeathSound.play()
+			
+		else:
+			$HitSound.play()
 		
 		
 func shoot():
@@ -86,9 +101,19 @@ func _on_death_sound_finished():
 	queue_free()
 	
 	
+func _on_dash_timer_timeout():
+	_current_speed = _modi_speed
+	is_Invulnerable = false
+	$DashCooldown.start()
+	
+	
 func _on_shooting_timer_timeout():
 	can_shoot = true
 
 
 func _on_buff_timer_timeout():
 	_current_mode = ("SINGLE")
+
+
+func _on_dash_cooldown_timeout():
+	can_dash = true
