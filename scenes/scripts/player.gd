@@ -9,6 +9,8 @@ var can_dash = true
 var is_Invulnerable = false
 
 var _current_mode = ("SINGLE")
+var _level = 2
+
 var _health = 3
 var _current_speed = 250
 var _modi_speed = 250
@@ -25,10 +27,10 @@ func _physics_process(delta):
 				
 			else:
 				pass
-			
+		
 		if Input.is_action_pressed("fire_up"):
 			if can_shoot == true:
-				shoot()
+				shoot(_level)
 				
 		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		velocity = direction * _current_speed
@@ -72,15 +74,17 @@ func get_damage(value):
 			$HitSound.play()
 		
 		
-func shoot():
+func shoot(level):
 	can_shoot = false
 	$ShootingTimer.start()
 	$ShootingSound.play()
 	
 	if _current_mode == ("SINGLE"):
 		var pr = projectile.instantiate()
-		
 		get_parent().add_child(pr)
+		pr.set_power(_level)
+		
+		pr._animated_sprite.play(str(_level))
 		pr.position.x = _marker.global_position.x - 43
 		pr.position.y = _marker.global_position.y - 80
 	
@@ -88,11 +92,16 @@ func shoot():
 		var pr1 = projectile.instantiate()
 		var pr2 = projectile.instantiate()
 		
+		pr1.set_power(_level)
+		pr2.set_power(_level)
+		
 		get_parent().add_child(pr1)
+		pr1._animated_sprite.play(str(_level))
 		pr1.position.x = _marker.global_position.x - 69
 		pr1.position.y = _marker.global_position.y - 80
 		
 		get_parent().add_child(pr2)
+		pr2._animated_sprite.play(str(_level))
 		pr2.position.x = _marker.global_position.x - 16
 		pr2.position.y = _marker.global_position.y - 80
 	

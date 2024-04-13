@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3vatigqay1ex"]
+[gd_scene load_steps=26 format=3 uid="uid://d3vatigqay1ex"]
 
 [ext_resource type="Script" path="res://scenes/scripts/bullet.gd" id="1_ext30"]
 [ext_resource type="Texture2D" uid="uid://bdm776x2q2me" path="res://data/projectile/pbullet.png" id="2_fj28o"]
@@ -177,18 +177,6 @@ size = Vector2(10, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gxfi"]
 size = Vector2(10, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev2tl"]
-size = Vector2(14.3107, 16.8513)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yg0vy"]
-size = Vector2(18.6214, 18.792)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yqam"]
-size = Vector2(27.2913, 20.99)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dt3xh"]
-size = Vector2(35.2718, 23.9206)
-
 [node name="Bullet" type="CharacterBody2D"]
 position = Vector2(-44, -41)
 scale = Vector2(1.50365, 1.36488)
@@ -200,7 +188,7 @@ script = ExtResource("1_ext30")
 position = Vector2(29, 30)
 scale = Vector2(2.125, 2.125)
 sprite_frames = SubResource("SpriteFrames_hwwhu")
-animation = &"5"
+animation = &"1"
 
 [node name="BulletCollision" type="CollisionShape2D" parent="."]
 position = Vector2(29, 30)
@@ -210,30 +198,9 @@ shape = SubResource("RectangleShape2D_ek65a")
 collision_layer = 8
 collision_mask = 6
 
-[node name="Level1SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
+[node name="SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
 position = Vector2(29, 30)
 shape = SubResource("RectangleShape2D_2gxfi")
-disabled = true
-
-[node name="Level2SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
-position = Vector2(29.1019, 29.6729)
-shape = SubResource("RectangleShape2D_ev2tl")
-disabled = true
-
-[node name="Level3SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
-position = Vector2(29.2621, 30.1679)
-shape = SubResource("RectangleShape2D_yg0vy")
-disabled = true
-
-[node name="Level4SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
-position = Vector2(28.9175, 31.0096)
-shape = SubResource("RectangleShape2D_2yqam")
-disabled = true
-
-[node name="Level5SignalCollider" type="CollisionShape2D" parent="BulletSignal"]
-position = Vector2(28.9175, 33.2076)
-shape = SubResource("RectangleShape2D_dt3xh")
-disabled = true
 
 [node name="VisibleNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(29, 30)
