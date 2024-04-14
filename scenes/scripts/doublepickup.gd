@@ -3,8 +3,9 @@ extends CharacterBody2D
 @onready var _animated_sprite = $DoubleSprite
 
 var direction = Vector2(0, 1)
-const SPEED = 100
+const SPEED = 120
 var _modificator = ("DOUBLE")
+var id_ = 1
 
 
 func _physics_process(delta):

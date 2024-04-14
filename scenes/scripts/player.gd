@@ -9,7 +9,7 @@ var can_dash = true
 var is_Invulnerable = false
 
 var _current_mode = ("SINGLE")
-var _level = 2
+var _level = 1
 
 var _health = 3
 var _current_speed = 250
@@ -55,6 +55,12 @@ func _on_signal_body_body_entered(body):
 		_current_mode = body._modificator
 		$BuffTimer.start()
 	
+	elif body.name.begins_with("PickupOneUp"):
+		print("level +1")
+		if _level < 15:
+			_level += 1
+			print(_level)
+	
 	body.pickup()
 	$PickupSound.play()
 			
@@ -82,9 +88,8 @@ func shoot(level):
 	if _current_mode == ("SINGLE"):
 		var pr = projectile.instantiate()
 		get_parent().add_child(pr)
-		pr.set_power(_level)
+		pr.power = _level
 		
-		pr._animated_sprite.play(str(_level))
 		pr.position.x = _marker.global_position.x - 43
 		pr.position.y = _marker.global_position.y - 80
 	
@@ -92,16 +97,14 @@ func shoot(level):
 		var pr1 = projectile.instantiate()
 		var pr2 = projectile.instantiate()
 		
-		pr1.set_power(_level)
-		pr2.set_power(_level)
+		pr1.power = _level
+		pr2.power = _level
 		
 		get_parent().add_child(pr1)
-		pr1._animated_sprite.play(str(_level))
 		pr1.position.x = _marker.global_position.x - 69
 		pr1.position.y = _marker.global_position.y - 80
 		
 		get_parent().add_child(pr2)
-		pr2._animated_sprite.play(str(_level))
 		pr2.position.x = _marker.global_position.x - 16
 		pr2.position.y = _marker.global_position.y - 80
 	

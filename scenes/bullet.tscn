@@ -239,5 +239,6 @@ disabled = true
 position = Vector2(29, 30)
 scale = Vector2(0.5, 0.6)
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="BulletSignal" to="." method="_on_bullet_signal_body_entered"]
 [connection signal="screen_exited" from="VisibleNotifier" to="." method="_on_visible_notifier_screen_exited"]
