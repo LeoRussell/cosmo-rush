@@ -4,7 +4,7 @@ extends Node2D
 var _enemies_number = 0
 
 
-func _physics_process(delta):
+func _physics_process(delta): 
 	if _enemies_number == 0:
 		_enemies_number = -1
 		$WaveDelay.start()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfer8gw082hgq"]
+[gd_scene load_steps=11 format=3 uid="uid://dfer8gw082hgq"]
 
 [ext_resource type="Script" path="res://scenes/scripts/game.gd" id="1_u46u0"]
 [ext_resource type="Texture2D" uid="uid://diqnolbvv58q7" path="res://data/background.png" id="2_wfb3f"]
+[ext_resource type="Shader" path="res://vhsmonitor.gdshader" id="5_cbq1y"]
+[ext_resource type="Script" path="res://scenes/VHShader.gd" id="6_e66q0"]
 [ext_resource type="PackedScene" uid="uid://c1d3a4ame7r3x" path="res://scenes/player.tscn" id="33_py6wo"]
 [ext_resource type="AudioStream" uid="uid://cddchhrfq4dmn" path="res://data/sounds/background/16_bit_space.ogg" id="35_q8p34"]
 
@@ -13,6 +15,30 @@ size = Vector2(551, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_71ff7"]
 size = Vector2(551, 34)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_560k8"]
+shader = ExtResource("5_cbq1y")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_u46u0")
@@ -52,5 +78,21 @@ autoplay = true
 
 [node name="WaveDelay" type="Timer" parent="."]
 one_shot = true
+
+[node name="VHShader" type="ColorRect" parent="."]
+top_level = true
+material = SubResource("ShaderMaterial_560k8")
+anchors_preset = -1
+anchor_left = -0.053
+anchor_top = -0.031
+anchor_right = 1.035
+anchor_bottom = 1.036
+offset_left = 0.136002
+offset_top = -0.239998
+offset_right = 0.0799561
+offset_bottom = 0.440002
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_e66q0")
 
 [connection signal="timeout" from="WaveDelay" to="." method="_on_wave_delay_timeout"]
